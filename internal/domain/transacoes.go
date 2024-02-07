@@ -1,9 +1,10 @@
 package domain
 
-import "github.com/google/uuid"
-
 type Transacao struct {
-	Id        uuid.UUID `json:"id"`
-	Valor     int64     `json:"valor"`
-	Descricao string    `json:"descricao"`
+	Id          int64
+	IdCliente   int
+	Valor       int64
+	Descricao   string
+	Tipo        rune
+	RealizadaEm string
 }

@@ -4,12 +4,11 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 
-	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
+	"github.com/teohen/rinha-de-backend-2024-q1/api/handler"
 )
 
 func main() {
@@ -35,18 +34,5 @@ func main() {
 
 	defer db.Close()
 
-	r := gin.Default()
-
-	r.GET("/ping", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-
-	err = r.Run()
-
-	if err != nil {
-		log.Fatal("Unable to create server")
-	}
-
+	handler.NewServer(db)
 }
